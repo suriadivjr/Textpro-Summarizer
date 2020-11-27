@@ -112,6 +112,6 @@ from termcolor import colored
 
 for sentence in clean:
 	if sentence in summarySet:
-		print(colored(originalSentenceOf[sentence].lstrip(' '), 'red'))
+		print(colored(originalSentenceOf[sentence].lstrip(' '), 'yellow'))
 	else:
 		print(originalSentenceOf[sentence].lstrip(' '))
