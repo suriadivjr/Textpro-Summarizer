@@ -18,8 +18,6 @@ def load_stopWords():
 stopwords = load_stopWords()	
 
 def cleanData(sentence):
-	#sentence = re.sub('[^A-Za-z0-9 ]+', '', sentence)
-	#sentence filter(None, re.split("[.!?", setence))
 	ret = []
 	sentence = stemmer.stem(sentence)	
 	for word in sentence.split():
@@ -60,9 +58,6 @@ texts = data.readlines()
 sentences = []
 clean = []
 originalSentenceOf = {}
-	
-import time
-start = time.time()
 
 #Data cleansing
 for line in texts:
@@ -97,8 +92,6 @@ while n > 0:
 	selected = max(mmr.items(), key=operator.itemgetter(1))[0]	
 	summarySet.append(selected)
 	n -= 1
-
-#rint str(time.time() - start)
 
 print('\nSummary:\n')
 for sentence in summarySet:
