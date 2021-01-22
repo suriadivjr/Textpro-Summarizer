@@ -1,11 +1,11 @@
+#PROSES MENYIMPULKAN
 import os
 import re
 import sys
+import operator
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
-import operator
 
 # create stemmer
 factory = StemmerFactory()
@@ -64,7 +64,6 @@ for line in texts:
 	parts = line.split('.')
 	for part in parts:
 		cl = cleanData(part)
-		#print cl
 		sentences.append(part)
 		clean.append(cl)
 		originalSentenceOf[cl] = part		
@@ -93,18 +92,30 @@ while n > 0:
 	summarySet.append(selected)
 	n -= 1
 
-print('\nSummary:\n')
+"""
+print('\nKesimpulan:\n')
 for sentence in summarySet:
-	print(originalSentenceOf [sentence].lstrip(' '))
-print
+	print(originalSentenceOf [sentence].lstrip(' ') + ". ") 
+"""
 
-print ('=============================================================')
-print ('\nOriginal Passages:\n')
+#PROSES TAGGING
+from nltk.tag import CRFTagger
+from nltk.tokenize import WhitespaceTokenizer 
+"""
+import nltk
+nltk.download('punkt')
+"""
+ct = CRFTagger()
+ct.set_model_file('all_indo_man_tag_corpus_model.crf.tagger')
 
-from termcolor import colored
+text = []
+for sentence in summarySet:
+	text.append(originalSentenceOf[sentence].lstrip(' ') + ". ")
 
-for sentence in clean:
-	if sentence in summarySet:
-		print(colored(originalSentenceOf[sentence].lstrip(' '), 'yellow'))
-	else:
-		print(originalSentenceOf[sentence].lstrip(' '))
+text1 = "".join(text)
+tk = WhitespaceTokenizer()
+tokenizingResults = ct.tag_sents([tk.tokenize(text1)])
+print(tokenizingResults)
+
+#NEXT: hitung word occurences sesuai tag
+#NEXT2: kata paling banyak di gabungin sama kata dari tag lain yang paling banyak juga
