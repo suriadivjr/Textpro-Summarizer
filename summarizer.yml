@@ -88,6 +88,7 @@ dependencies:
     - configparser==5.0.1
     - crayons==0.4.0
     - idna==2.10
+    - pysastrawi==1.2.0
     - requests==2.25.1
     - webdriver-manager==3.2.2
 prefix: /home/suriadivjr/anaconda3/envs/summarizer
