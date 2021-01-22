@@ -11,7 +11,7 @@ class NewsSpider(scrapy.Spider):
 
     def parse(self, response):
         SCROLL_PAUSE_TIME = 5
-        driver = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+        driver = webdriver.Chrome(ChromeDriverManager("""chrome_type=ChromeType.CHROMIUM""").install())
         last_height = driver.execute_script("return document.body.scrollHeight")
         driver.get(response.url)
         
