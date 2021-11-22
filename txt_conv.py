@@ -20,8 +20,8 @@ def converter(fname):
 
     txtfile.close()
 
-converter('news_cnnindo')
+#converter('news_cnnindo')
 converter('news_detik')
 converter('news_kompas')
-converter('news_kumparan')
+#converter('news_kumparan')
 converter('news_liputan6')
