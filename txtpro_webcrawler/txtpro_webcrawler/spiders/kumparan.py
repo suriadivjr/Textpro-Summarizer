@@ -1,8 +1,6 @@
 import scrapy, time, chromedriver_binary
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.utils import ChromeType
-
 class NewsSpider(scrapy.Spider):
     name = "news_kumparan"
     start_urls = [
@@ -11,7 +9,7 @@ class NewsSpider(scrapy.Spider):
 
     def parse(self, response):
         SCROLL_PAUSE_TIME = 5
-        driver = webdriver.Chrome(ChromeDriverManager("""chrome_type=ChromeType.CHROMIUM""").install())
+        driver = webdriver.Chrome(ChromeDriverManager().install())
         last_height = driver.execute_script("return document.body.scrollHeight")
         driver.get(response.url)
         
